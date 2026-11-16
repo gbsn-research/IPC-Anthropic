@@ -6,7 +6,7 @@
 
 **Publisher:** GBSN Research
 **Support:** publications@GBSNResearch.com
-**Homepage / public research code:** https://github.com/gbsn-research/IPC-Interoperable-Contribution-Provenance
+**Homepage / public research code:** https://github.com/gbsn-research/IPC-Interoperable-Provenance-Contribution
 **Demonstration:** https://huggingface.co/spaces/GBSNResearch/ipc-provenance-explorer
 **Archived research:** https://zenodo.org/records/24281403
 **Software license currently bundled:** MIT (confirm publisher consent before releasing)
