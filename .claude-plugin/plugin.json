@@ -8,7 +8,7 @@
     "email": "publications@GBSNResearch.com"
   },
   "license": "MIT",
-  "homepage": "https://github.com/gbsn-research/IPC-Interoperable-Provenance-Contribution",
+  "homepage": "https://github.com/gbsn-research/IPC-Anthropic",
   "keywords": [
     "provenance",
     "W3C PROV",
@@ -16,7 +16,7 @@
     "contribution traceability",
     "local-first"
   ],
-  "repository": "https://github.com/gbsn-research/IPC-Interoperable-Provenance-Contribution",
-  "documentationUrl": "https://github.com/gbsn-research/IPC-Interoperable-Provenance-Contribution",
+  "repository": "https://github.com/gbsn-research/IPC-Anthropic",
+  "documentationUrl": "https://github.com/gbsn-research/IPC-Anthropic",
   "defaultEnabled": true
 }

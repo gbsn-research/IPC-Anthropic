@@ -73,7 +73,7 @@ See [INSTALL.md](INSTALL.md), [PRIVACY.md](PRIVACY.md), [SECURITY.md](SECURITY.m
 
 ## Research and support
 
-- GitHub: https://github.com/gbsn-research/IPC-Interoperable-Provenance-Contribution
+- GitHub: https://github.com/gbsn-research/IPC-Anthropic
 - Hugging Face: https://huggingface.co/spaces/GBSNResearch/ipc-provenance-explorer
 - Zenodo: https://zenodo.org/records/24281403
 - Support: publications@GBSNResearch.com
