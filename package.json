@@ -1,0 +1,14 @@
+{
+  "name": "ipc-provenance-free",
+  "private": true,
+  "version": "0.3.0",
+  "description": "Free local MCP integration for Interoperable Provenance Contribution",
+  "license": "MIT",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "test": "node --check server.js && node scripts/preflight.js && node test/smoke.js && node test/security.js",
+    "demo": "node test/make-demo.js"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

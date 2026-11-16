@@ -1,0 +1,22 @@
+{
+  "name": "ipc-provenance",
+  "version": "0.3.0",
+  "displayName": "Interoperable Provenance Contribution (IPC)",
+  "description": "Free, opt-in, local-first IPC event capture and contribution timelines. Tools require a local Node runtime; skills are also usable in Claude chat.",
+  "author": {
+    "name": "GBSN Research",
+    "email": "publications@GBSNResearch.com"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/gbsn-research/IPC-Interoperable-Contribution-Provenance",
+  "keywords": [
+    "provenance",
+    "W3C PROV",
+    "human-AI collaboration",
+    "contribution traceability",
+    "local-first"
+  ],
+  "repository": "https://github.com/gbsn-research/IPC-Interoperable-Contribution-Provenance",
+  "documentationUrl": "https://github.com/gbsn-research/IPC-Interoperable-Contribution-Provenance",
+  "defaultEnabled": true
+}

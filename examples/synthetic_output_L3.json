@@ -1,0 +1,133 @@
+{
+  "ipc_version": "0.1-draft",
+  "exported_at": "2026-11-16T14:47:12.199Z",
+  "disclosure_level": 3,
+  "scope": "trace of report:version-2",
+  "self_declared": true,
+  "integrity": "No transferable cryptographic authentication at this level.",
+  "view": {
+    "level": 3,
+    "events": [
+      {
+        "id": "urn:ipc:local-user:E01",
+        "issuer": "local-user",
+        "actor": {
+          "id": "researcher:01",
+          "type": "human",
+          "name": "Researcher"
+        },
+        "action": "proposes",
+        "object": "study:question",
+        "time": "2026-11-10T09:00:00Z",
+        "time_basis": "asserted",
+        "recorded_at": "2026-11-16T14:47:12.192Z",
+        "public_label": "Researcher defined the research question and study scope.",
+        "evidence_origin": "person-supplied"
+      },
+      {
+        "id": "urn:ipc:local-user:E02",
+        "issuer": "local-user",
+        "actor": {
+          "id": "tool:scholar-search",
+          "type": "software",
+          "name": "Research search tool"
+        },
+        "action": "retrieves",
+        "object": "source:published-research",
+        "time": "2026-11-10T09:12:00Z",
+        "time_basis": "asserted",
+        "recorded_at": "2026-11-16T14:47:12.194Z",
+        "public_label": "The tool retrieved a published research source.",
+        "evidence_origin": "third-party",
+        "parents": [
+          "urn:ipc:local-user:E01"
+        ]
+      },
+      {
+        "id": "urn:ipc:local-user:E03",
+        "issuer": "local-user",
+        "actor": {
+          "id": "model:claude",
+          "type": "ai",
+          "name": "Claude"
+        },
+        "action": "proposes",
+        "object": "report:version-1",
+        "time": "2026-11-10T09:22:00Z",
+        "time_basis": "asserted",
+        "recorded_at": "2026-11-16T14:47:12.195Z",
+        "public_label": "Claude proposed a draft synthesis referencing the research source.",
+        "evidence_origin": "application-inferred",
+        "parents": [
+          "urn:ipc:local-user:E01",
+          "urn:ipc:local-user:E02"
+        ]
+      },
+      {
+        "id": "urn:ipc:local-user:E04",
+        "issuer": "local-user",
+        "actor": {
+          "id": "researcher:01",
+          "type": "human",
+          "name": "Researcher"
+        },
+        "action": "checks",
+        "object": "report:version-1",
+        "time": "2026-11-10T09:34:00Z",
+        "time_basis": "asserted",
+        "recorded_at": "2026-11-16T14:47:12.196Z",
+        "public_label": "Researcher checked a claim against the retrieved source.",
+        "selector": "Claim 2",
+        "evidence_origin": "person-supplied",
+        "parents": [
+          "urn:ipc:local-user:E03"
+        ]
+      },
+      {
+        "id": "urn:ipc:local-user:E05",
+        "issuer": "local-user",
+        "actor": {
+          "id": "researcher:01",
+          "type": "human",
+          "name": "Researcher"
+        },
+        "action": "revises",
+        "object": "report:version-2",
+        "time": "2026-11-10T09:47:00Z",
+        "time_basis": "asserted",
+        "recorded_at": "2026-11-16T14:47:12.197Z",
+        "public_label": "Researcher revised the conclusion and prepared a new version.",
+        "selector": "Conclusion",
+        "evidence_origin": "person-supplied",
+        "parents": [
+          "urn:ipc:local-user:E03",
+          "urn:ipc:local-user:E04"
+        ]
+      },
+      {
+        "id": "urn:ipc:local-user:E06",
+        "issuer": "local-user",
+        "actor": {
+          "id": "reviewer:01",
+          "type": "human",
+          "name": "Reviewer"
+        },
+        "action": "reviews",
+        "object": "report:version-2",
+        "time": "2026-11-10T10:05:00Z",
+        "time_basis": "asserted",
+        "recorded_at": "2026-11-16T14:47:12.197Z",
+        "public_label": "Reviewer inspected the revised document.",
+        "parents": [
+          "urn:ipc:local-user:E05"
+        ]
+      }
+    ],
+    "note": "Some events or references may be withheld; view does not establish complete history."
+  },
+  "demo": {
+    "synthetic": true,
+    "subject": "AI-assisted research synthesis",
+    "limitations": "Six-event sample of human, AI and software contributions. Open your own IPC JSON to inspect a record."
+  }
+}
