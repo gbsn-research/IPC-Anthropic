@@ -2,7 +2,7 @@
   "name": "ipc-provenance-free",
   "private": true,
   "version": "0.3.0",
-  "description": "Free local MCP integration for Interoperable Provenance Contribution",
+  "description": "IPC for Anthropic: contribution provenance events, examples, and interactive exploration",
   "license": "MIT",
   "engines": { "node": ">=18" },
   "scripts": {

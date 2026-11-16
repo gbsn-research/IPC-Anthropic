@@ -1,6 +1,8 @@
-# Interoperable Provenance Contribution (IPC) — Free Local Plugin v0.3.0
+# IPC — Anthropic
 
-IPC Free records user-requested contribution events, builds a chronological provenance timeline, and exports selective records you can share. It uses the event conventions described in the [IPC v2.3 research](https://zenodo.org/records/24281403). The accompanying viewer shows the same timeline, contribution map, and record data structure as the IPC explorer.
+Interoperable Contribution Provenance (IPC) is a proposed framework for tracing how humans, AI systems, software, and external sources contribute to digital outputs. This repository provides the event syntax, structured synthetic examples, and an interactive explorer illustrating attribution, source lineage, transformations, and accountability.
+
+The local plugin records user-requested contribution events, builds a chronological provenance timeline, and exports selective records you can share. It uses the event conventions described in the [IPC v2.3 research](https://zenodo.org/records/24281403).
 
 **Free, no account, no subscriptions.** The Node MCP server stores records only on the device where it runs, makes no network requests, and does not monitor Claude conversations. The Claude host itself may process tool inputs and results in its conversation; read [PRIVACY.md](PRIVACY.md).
 

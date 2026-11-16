@@ -1,14 +1,14 @@
 {
   "name": "ipc-provenance",
   "version": "0.3.0",
-  "displayName": "Interoperable Provenance Contribution (IPC)",
-  "description": "Free, opt-in, local-first IPC event capture and contribution timelines. Tools require a local Node runtime; skills are also usable in Claude chat.",
+  "displayName": "IPC — Anthropic",
+  "description": "IPC for Anthropic: trace human, AI, software, and source contributions with local event capture and timelines.",
   "author": {
     "name": "GBSN Research",
     "email": "publications@GBSNResearch.com"
   },
   "license": "MIT",
-  "homepage": "https://github.com/gbsn-research/IPC-Interoperable-Contribution-Provenance",
+  "homepage": "https://github.com/gbsn-research/IPC-Anthropic",
   "keywords": [
     "provenance",
     "W3C PROV",
@@ -16,7 +16,7 @@
     "contribution traceability",
     "local-first"
   ],
-  "repository": "https://github.com/gbsn-research/IPC-Interoperable-Contribution-Provenance",
-  "documentationUrl": "https://github.com/gbsn-research/IPC-Interoperable-Contribution-Provenance",
+  "repository": "https://github.com/gbsn-research/IPC-Anthropic",
+  "documentationUrl": "https://github.com/gbsn-research/IPC-Anthropic",
   "defaultEnabled": true
 }
