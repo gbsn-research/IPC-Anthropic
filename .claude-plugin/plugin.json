@@ -1,22 +1,20 @@
 {
   "name": "ipc-provenance",
-  "version": "0.3.0",
-  "displayName": "IPC — Anthropic",
-  "description": "IPC for Anthropic: trace human, AI, software, and source contributions with local event capture and timelines.",
+  "version": "0.2.1",
+  "displayName": "Interoperable Provenance Contribution (IPC)",
+  "description": "Record, trace and share declared contribution provenance (who or what contributed what) for human, AI and tool work. Local-first, free for individuals, no account needed.",
   "author": {
     "name": "GBSN Research",
     "email": "publications@GBSNResearch.com"
   },
   "license": "MIT",
-  "homepage": "https://github.com/gbsn-research/IPC-Anthropic",
+  "homepage": "https://huggingface.co/spaces/GBSNResearch/ipc-provenance-explorer",
+  "repository": "https://github.com/gbsn-research/IPC-Anthropic",
   "keywords": [
     "provenance",
-    "W3C PROV",
-    "human-AI collaboration",
-    "contribution traceability",
-    "local-first"
-  ],
-  "repository": "https://github.com/gbsn-research/IPC-Anthropic",
-  "documentationUrl": "https://github.com/gbsn-research/IPC-Anthropic",
-  "defaultEnabled": true
+    "PROV",
+    "AI disclosure",
+    "contribution tracking",
+    "audit"
+  ]
 }

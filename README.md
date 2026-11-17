@@ -1,81 +1,78 @@
-# IPC — Anthropic
+# Interoperable Provenance Contribution (IPC)
 
-Interoperable Contribution Provenance (IPC) is a proposed framework for tracing how humans, AI systems, software, and external sources contribute to digital outputs. This repository provides the event syntax, structured synthetic examples, and an interactive explorer illustrating attribution, source lineage, transformations, and accountability.
+IPC is a free, local-first plugin for recording **who or what contributed what** to a piece of work, and for sharing that history with someone else in a controlled way. It needs no account, no subscription and no server. Everything is stored on your own computer.
 
-The local plugin records user-requested contribution events, builds a chronological provenance timeline, and exports selective records you can share. It uses the event conventions described in the [IPC v2.3 research](https://zenodo.org/records/24281403).
+## What it is about
 
-**Free, no account, no subscriptions.** The Node MCP server stores records only on the device where it runs, makes no network requests, and does not monitor Claude conversations. The Claude host itself may process tool inputs and results in its conversation; read [PRIVACY.md](PRIVACY.md).
+Finished work hides its history. A report, an essay or a customer profile can combine a person's ideas, AI-generated wording, software calculations, third-party data and later human corrections, and the final file does not show which was which. A label like "AI used" is too blunt to be useful.
 
-## Install in Claude Code
+IPC gives that history a shared structure so it can be inspected and exchanged instead of reconstructed from memory. Each event says who acted, who recorded the claim, what was affected, what it depended on, where the information came from (supplied by a person, third party, observed, inferred or corrected), and when. The structure is a candidate application profile based on the W3C PROV model, from a GBSN Research research proposal that has not been peer reviewed. It is not a W3C standard, and this plugin makes no claim of conformance or cross-vendor interoperability.
 
-You need Node.js **18 or newer** and an installed/signed-in Claude Code version supporting plugin ZIPs (see [Anthropic's docs](https://code.claude.com/docs/en/plugins/create)). From the directory containing the ZIP:
+## How we intend to work
 
-```sh
-claude --plugin-dir ./IPC_Free_Local_Plugin_v0.3.0.zip
-```
+- **You decide what is recorded.** Nothing is logged unless you ask. The plugin does not watch your conversations, does not read Claude's memory or chat history, and never stores message text.
+- **Describe, don't judge.** Records show what was declared. They do not measure skill, authorship share, effort or honesty, and should not be the only basis for adverse decisions about students, workers or data subjects.
+- **Keep roles apart.** The actor, the issuer recording the claim, and the person an assertion is about are separate fields.
+- **Corrections add, never erase.** A correction supersedes or contests an earlier assertion and the earlier record stays. When upstream history is unknown, a trace says it ends there.
+- **Share only what you choose.** Five disclosure levels let you share a declaration, the actors, a contribution map, a timeline or full records.
+- **Local first.** No network access, no analytics, no dependencies.
 
-Or extract the ZIP, then:
+## Try it
 
-```sh
-claude plugin validate ./ipc-provenance
-claude --plugin-dir ./ipc-provenance
-```
-
-The `--plugin-dir` install is session-scoped. To test the local server without Claude:
+Requires Node.js 18 or newer and a Claude app that loads local plugin servers (for example Claude Code). From a terminal:
 
 ```sh
-cd ipc-provenance
-npm test
+claude --plugin-dir /full/path/to/ipc-provenance
 ```
 
-No `npm install` is needed. The package has **zero third-party dependencies**, and the plugin does not run shell hooks. Use `/ipc-provenance:ipc-record` or ask Claude to record a user-declared event; use `/ipc-provenance:ipc-share` or ask for a timeline/export. Depending on the host, `ipc_*` MCP tools will appear after the local server starts.
+Example prompts:
 
-**Claude web chat:** Skills can load, but the local Node MCP server does not run in a browser chat. The recording/trace tools require Claude Code or a compatible local MCP host; a separately hosted remote connector is required for full web-chat functionality. This release does **not** provide a hosted service, OAuth, cloud storage, or paid organizational features.
+1. "Record that I wrote the thesis for my essay myself, then that an AI assistant proposed an outline from it, then that I revised paragraph 3. Show me the events first."
+2. "Trace the history of essay:draft-1 and tell me where the recorded history ends."
+3. "Export my records for essay:draft-1 at level 2 and save the file so I can send it to my instructor."
 
-## Try the workflow
+To explore with synthetic sample data (a student essay, a contested profile inference, an enterprise report) without touching your own log:
 
-1. Say: “Record that I wrote the research question for `report:v1`.”
-2. Say: “Record that Claude proposed an outline for `report:v1`, referencing the first event.”
-3. Say: “Show the IPC contribution timeline for `report:v1`.”
-4. Say: “Export `report:v1` at Level 3 and save the IPC JSON locally.”
-5. Open `IPC_Viewer.html` in your browser. Select **Open my IPC JSON** and choose the exported file.
+```sh
+node ipcctl.js demo ~/ipc-demo
+IPC_HOME=~/ipc-demo claude --plugin-dir /full/path/to/ipc-provenance
+```
 
-The viewer opens a six-event synthetic example by default. Its three tabs are **Contribution timeline**, **Contribution map**, and **Event data**. Input data is rendered as text, not executable HTML.
+## What it runs and what each tool does
 
-## Tools and default privacy choices
+The plugin starts one local Node.js program, `server.js`, through `.mcp.json`. It also includes an optional command line, `ipcctl.js`, that you run yourself. There are no hooks, no background processes and no network calls.
 
-| Tool | Role |
+| Tool | Purpose | Changes data |
+| --- | --- | --- |
+| `ipc_record_event` | Append one event you asked to record | Appends to the local log |
+| `ipc_record_events` | Append up to 20 events you approved, all or nothing | Appends to the local log |
+| `ipc_list_events` | List events visible at a disclosure level | No |
+| `ipc_trace_object` | Follow one item's history upstream | No |
+| `ipc_verify_chain` | Recompute the hash chain and report problems | No |
+| `ipc_export_records` | Export IPC JSON or experimental PROV-JSON; optional local file | Writes a file only if you ask |
+
+## Disclosure levels
+
+| Level | Shared information |
 | --- | --- |
-| `ipc_record_event` | Manually record an event with actor, issuer, action, object, source links and optional output selector. |
-| `ipc_list_events` | List recorded items through a chosen disclosure view (default Level 2). |
-| `ipc_trace_object` | Follow recorded dependencies for one item (default Level 3). |
-| `ipc_render_timeline` | Display a readable chronological history (default Level 3). |
-| `ipc_verify_chain` | Check the locally stored SHA-256 chain. |
-| `ipc_export_records` | Export IPC JSON or preliminary PROV-JSON, optionally writing a local file. |
+| 0 | A declaration that AI or automated systems took part, about disclosed events only |
+| 1 | Actors and roles |
+| 2 | Contribution map: item, action, actor type, origin |
+| 3 | Timeline of events, with permitted links only |
+| 4 | Full records, including hashes, summaries and data subjects |
 
-Disclosure views range from Level 0 (participation declaration) to Level 4 (all stored fields). Entries can set `min_view_level` so they appear only in suitably detailed views. These are **view filters, not user authorization**. Store sensitive fields with `min_view_level=4` and never put them in Level 3 `public_label` values.
+Give each event a `min_view_level` (0 to 4): the lowest level at which you are willing to show it. The default is 1. Hidden events are excluded before listing, tracing, counting and exporting, and hidden identifiers do not appear in lower-level views. Levels filter what you show. They are not encryption or access control, and anyone who can read your local log can read everything in it. Identifiers you mark visible can themselves reveal sensitive facts, so use neutral identifiers and `min_view_level: 4` for sensitive events.
 
-Level 4 is **off by default**. If you deliberately want the MCP tools to expose full locally stored fields to Claude, start the host with the environment variable `IPC_ALLOW_LEVEL4=1` and explicitly request a Level 4 tool call, which also requires `confirm_sensitive_view=true` (or `confirm_sensitive_export=true` when exporting). Environment setup varies by OS and host. Treat that switch as a sensitive session-wide capability: it is not a replacement for identity-based authentication.
+## Files and limits
 
-The plugin does not fetch external source URLs. An optional `payload_text` argument is hashed and discarded; recorded `summary`, `public_label`, source identifiers and other metadata persist in the local log. A hash chain detects some edits but does not prove a contributor's identity or the truth of a statement.
+- Data lives in `~/.ipc-provenance/` (override with the `IPC_HOME` environment variable): `records.jsonl` and an `exports/` folder. Files are created readable only by you where the operating system supports it.
+- Delete that folder to erase everything. A file you already sent cannot be recalled.
+- If you give `payload_text` (at least 40 characters, such as a document), only its SHA-256 is stored, but the text still passes through Claude as a tool argument, so do not send secrets. Short text can be guessed from its hash, so use `payload_ref` for that.
+- Records are self-declared. The hash chain detects casual edits only; anyone who can rewrite the whole file can rebuild it. It is not a signature and does not prove authenticity, completeness or truth.
+- The PROV-JSON export is an experimental mapping that has not been validated against any conformance suite.
 
-## Files and maintenance
+Run `node test/smoke.js` to check your copy. It uses a temporary folder and never touches your real log.
 
-- Storage: `~/.ipc-provenance/records.jsonl` (override with `IPC_HOME`).
-- Exports: `~/.ipc-provenance/exports/`.
-- Private 0700 directory and 0600 log/export permissions on Unix; Windows access depends on Windows ACLs.
-- A local exclusive `.write.lock` prevents simultaneous writes. If a process crashes and leaves this lock, **first confirm no IPC server is still writing**, then remove it manually.
-- To delete local data, close IPC hosts and delete the `~/.ipc-provenance` directory after backing up anything you want to retain.
-- When upgrading from v0.2.x, existing records are kept. New IDs use random UUIDs; old event identifiers remain valid. Back up `records.jsonl` before upgrading.
-- The data file has a 50 MB local limit; export and archive older records if you approach the limit.
+## Support, privacy, license
 
-See [INSTALL.md](INSTALL.md), [PRIVACY.md](PRIVACY.md), [SECURITY.md](SECURITY.md), and [RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.md).
-
-## Research and support
-
-- GitHub: https://github.com/gbsn-research/IPC-Anthropic
-- Hugging Face: https://huggingface.co/spaces/GBSNResearch/ipc-provenance-explorer
-- Zenodo: https://zenodo.org/records/24281403
-- Support: publications@GBSNResearch.com
-
-This software uses the MIT license from v0.2.x. The research manuscript and commercial IPC service are separate artifacts. Review your licensing policy before publicly distributing source code.
+Support and security reports: publications@GBSNResearch.com. See `PRIVACY.md` and `SECURITY_NOTES.md`. Released under the MIT License.
